@@ -19,6 +19,21 @@ prefix('admin')
     Route::get('/dashboard', 'index')->name('admin.dashboard');
 });
 
+
+//. Authentication routes for admin
+
+Route::
+prefix('admin')
+->controller(AdminController::class)
+->group(function(){
+    Route::get('/login', 'login')->name('admin.login');
+    Route::get('/signup', 'signup')->name('admin.signup');
+    Route::get('/reset-pass', 'reset_pass')->name('admin.reset.pass');
+    Route::get('/forget-pass', 'forget_pass')->name('admin.forget.pass');
+});
+
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
